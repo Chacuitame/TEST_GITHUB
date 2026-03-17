@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "f9bc9aeb900d13c05aa0",
+  "position": {
+    "x": 404.14814814814815,
+    "y": 165.92592592592592,
+    "z": 0,
+    "height": 279.7037037037037,
+    "width": 280.88888888888891,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bv_dwh_dmmisc_misc_cfg_informe_url"
+                    }
+                  },
+                  "Property": "nombre_pagina"
+                }
+              },
+              "queryRef": "bv_dwh_dmmisc_misc_cfg_informe_url.nombre_pagina",
+              "nativeQueryRef": "nombre_pagina"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Valor"
+                }
+              },
+              "queryRef": "DAX.Valor",
+              "nativeQueryRef": "Valor"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e51b91004085c0ba7586",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bv_dwh_dmmisc_misc_cfg_informe_url"
+              }
+            },
+            "Property": "nombre_pagina"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4574bde0654109ea4b45",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX"
+              }
+            },
+            "Property": "Valor"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
