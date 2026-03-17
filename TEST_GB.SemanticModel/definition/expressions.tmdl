@@ -1,0 +1,7 @@
+expression 'Parametro de Cadena de Conexión' = "DENODO_ESCO_DEVL" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=false]
+	lineageTag: abaf9b47-95ec-404e-ba0f-231d0e8c585e
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

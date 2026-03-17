@@ -1,0 +1,70 @@
+table bv_dwh_dmmisc_misc_cfg_informe_url
+	lineageTag: 8ffbbe92-c040-4e0d-923b-8a1875e057fe
+
+	column clave_servicio
+		dataType: string
+		lineageTag: ec8a463c-672f-4691-995d-236a99e4806d
+		summarizeBy: none
+		sourceColumn: clave_servicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_informe
+		dataType: string
+		lineageTag: a0d0cda2-cd13-476e-8d5a-0394d2f27177
+		summarizeBy: none
+		sourceColumn: nombre_informe
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_pagina
+		dataType: string
+		lineageTag: b9f11350-8ca6-46e7-9efb-333047a8f722
+		summarizeBy: none
+		sourceColumn: nombre_pagina
+
+		annotation SummarizationSetBy = Automatic
+
+	column secuencia_url
+		dataType: double
+		lineageTag: 19022a16-0eda-4da6-9200-fd9fc9024a95
+		summarizeBy: sum
+		sourceColumn: secuencia_url
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column url
+		dataType: string
+		lineageTag: f87e222f-d2ac-4493-85a7-fdd793d03a27
+		summarizeBy: none
+		sourceColumn: url
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_ultima_modificacion
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7670074a-5922-4275-bc7b-8943420b6568
+		summarizeBy: none
+		sourceColumn: fecha_ultima_modificacion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bv_dwh_dmmisc_misc_cfg_informe_url = m
+		mode: import
+		source =
+				let
+				    Source = Denodo.Contents(#"Parametro de Cadena de Conexión",null, []),
+				    itesm_escolar_Database = Source{[Name="itesm_escolar",Kind="Database"]}[Data],
+				    itesm_escolar_Schema = itesm_escolar_Database{[Name="itesm_escolar",Kind="Schema"]}[Data],
+				    bv_dwh_dmmisc_misc_cfg_informe_url_Table = itesm_escolar_Schema{[Name="bv_dwh_dmmisc_misc_cfg_informe_url",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(bv_dwh_dmmisc_misc_cfg_informe_url_Table, each ([clave_servicio] = "Serv_IA_AlertasTempranas"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

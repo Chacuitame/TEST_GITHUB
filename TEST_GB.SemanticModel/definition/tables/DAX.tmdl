@@ -1,0 +1,28 @@
+table DAX
+	lineageTag: a1d0907e-4486-45f5-bbb9-02f8f4ebf53c
+
+	measure Selected_Value = SELECTEDVALUE(bv_dwh_dmmisc_misc_cfg_informe_url[url])
+		lineageTag: b3923b76-f4c8-46ec-bee1-4f794877dc11
+
+	measure Valor =
+			
+			VAR _SV = SELECTEDVALUE(bv_dwh_dmmisc_misc_cfg_informe_url[nombre_pagina])
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    _SV = "TODOS","SI",
+			    "NO")
+		lineageTag: 6e9db63d-5cac-47c2-bc5a-b91e8dfbcfc3
+
+	partition DAX = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
