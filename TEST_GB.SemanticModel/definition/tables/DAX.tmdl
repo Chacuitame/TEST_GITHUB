@@ -10,8 +10,8 @@ table DAX
 			RETURN
 			SWITCH(
 			    TRUE(),
-			    _SV = "TODOS","SI",
-			    "NO")
+			    _SV = "TODOS","NO",
+			    "SI")
 		lineageTag: 6e9db63d-5cac-47c2-bc5a-b91e8dfbcfc3
 
 	partition DAX = m
